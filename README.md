@@ -1,5 +1,7 @@
 # Docker environment for web push demo
 
+Docker settings for [web-push-demo](https://github.com/tommyheavenly7/web-push-demo), in case if anyone who wants to use node and nginx with SSL for learning push notifications.
+
 ## Configure SSL
 
 You might want to use [mkcert](https://github.com/FiloSottile/mkcert) so that
