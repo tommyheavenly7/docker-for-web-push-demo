@@ -1,0 +1,68 @@
+version: '3.5'
+services:
+
+  nginx:
+    build:
+      context: docker/nginx
+      dockerfile: Dockerfile
+    ports:
+      - "443:443"
+    depends_on:
+      - frontend
+      - backend
+    volumes:
+      - ./project:/var/project
+      - ./docker/.volumes/log:/var/log
+
+  frontend:
+    build:
+      context: docker/node
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+       - ./project/frontend:/var/project
+    environment:
+      - NODE_ENV=development
+    working_dir: /var/project
+    command: ['sh', '-c', 'npm start']
+
+  backend:
+    build:
+      context: docker/node
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./project/backend:/var/project
+    environment:
+      - NODE_ENV=development
+    working_dir: /var/project
+    command: ['sh', '-c', 'npm start']
+
+  npm-front:
+    build:
+      context: docker/node
+      dockerfile: Dockerfile
+    volumes:
+      - ./project/frontend:/var/project
+    working_dir: /var/project/
+    entrypoint: ["/usr/local/bin/npm"]
+
+  npm-back:
+    build:
+      context: docker/node
+      dockerfile: Dockerfile
+    volumes:
+      - ./project/backend:/var/project
+    working_dir: /var/project
+    entrypoint: ["/usr/local/bin/npm"]
+
+  npx:
+    build:
+      context: docker/node
+      dockerfile: Dockerfile
+    volumes:
+      - ./project/backend:/var/project
+    working_dir: /var/project
+    entrypoint: ["/usr/local/bin/npx"]
