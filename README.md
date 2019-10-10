@@ -77,14 +77,14 @@ $ docker-compose up --no-start
 Before executing the following script, please confirm your `$PATH` contains the path to `./docker/bin`.
 
 ```shell script
-_run frontend npm install
-_run backend npm install
+$ _run frontend npm install
+$ _run backend npm install
 ```
 Or, you also can directly run the script instead.
 
 ```shell script
-./docker/bin/_run frontend npm install
-./docker/bin/_run backend npm install
+$ ./docker/bin/_run frontend npm install
+$ ./docker/bin/_run backend npm install
 ```
 
 ### Build distribution scripts for frontend
@@ -102,7 +102,7 @@ _run frontend npm run build
 You may see the containers are running.
 
 ```shell script
-$ docker-compose up --detach
+docker-compose up --detach
 ```
 
 ### Restart containers
@@ -114,5 +114,5 @@ docker-compose up -d --force-recreate
 ### Stop containers
 
 ```shell script
-$ docker-compose stop
+docker-compose stop
 ```
